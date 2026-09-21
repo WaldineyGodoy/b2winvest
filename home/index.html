@@ -12,6 +12,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/posters/c0-timelapse.jpg">
 <script>document.documentElement.classList.replace('no-js','js');</script>
+
+<!-- Meta Pixel Code (conjunto de dados B2W Invest 27234731879517718) -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '27234731879517718');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=27234731879517718&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- Google tag (Google Ads AW-782971769) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-782971769"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-782971769');
+</script>
+<!-- End Google tag -->
 <style>
 :root{
   --gold-200:#F5E080; --gold-300:#EDCB45; --gold-400:#D4AF37; --gold-500:#B8960C;
@@ -489,6 +515,15 @@ html.no-js .reveal,html.rm .reveal{opacity:1;transform:none}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+// conta cliques de WhatsApp no Pixel da Meta e no Google Ads
+document.addEventListener('click', e => {
+  const w = e.target.closest('a[href*="wa.me/"]');
+  if (!w) return;
+  if (window.fbq) fbq('track', 'Contact', { origem: w.dataset.wa || 'outro' });
+  if (window.gtag) gtag('event', 'conversion', { send_to: 'AW-782971769/u6pNCKzrq4AdEPnmrPUC' });
+});
+</script>
 <script>
 (() => {
   const root = document.documentElement;
