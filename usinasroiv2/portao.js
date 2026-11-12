@@ -19,13 +19,30 @@
   var CHAVE = 'b2w_usina_token';
   var raiz = document.documentElement;
 
-  function tokenValido() {
+  function tokenOk(t) {
     try {
-      var t = localStorage.getItem(CHAVE);
       if (!t || t.indexOf('.') < 0) return false;
       var p = JSON.parse(atob(t.split('.')[0].replace(/-/g, '+').replace(/_/g, '/')));
       return typeof p.exp === 'number' && p.exp > Date.now();
     } catch (e) { return false; }
+  }
+
+  /* Link pessoal de acesso: `#acesso=<token>` entra sem passar pelo código do
+     WhatsApp. O token é o mesmo que `usina-acesso` devolve ao validar o código,
+     emitido pelo dono para quem não consegue recebê-lo. Vale como o token comum
+     (30 dias) e o hash some da barra de endereço depois de lido. */
+  var doLink = null;
+  (function () {
+    var m = /^#acesso=([A-Za-z0-9_-]+\.[A-Za-z0-9_-]+)$/.exec(location.hash);
+    if (!m || !tokenOk(m[1])) return;
+    doLink = m[1];
+    try { localStorage.setItem(CHAVE, doLink); } catch (e) { /* modo privado: vale só nesta visita */ }
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { }
+  })();
+
+  function tokenValido() {
+    if (doLink && tokenOk(doLink)) return true;
+    try { return tokenOk(localStorage.getItem(CHAVE)); } catch (e) { return false; }
   }
 
   /* Atalho do visualizador: `#pular` abre sem portão, mas SÓ fora do ar
