@@ -1,0 +1,6 @@
+# /paginas/ não tem página própria e respondia 403 (o Search Console reclamava).
+# Leva à home da B2W Invest. As demais pastas não são afetadas.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^$ /paginas/home/ [R=301,L]
+</IfModule>
